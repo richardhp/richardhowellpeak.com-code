@@ -14,4 +14,4 @@ jobs:
       - name: Install dependencies
         run: cd src/backend/authentication && dart pub get
       - name: Test app
-        run: cd src/backend/authentication && dart test --coverage
+        run: cd src/backend/authentication && dart test
