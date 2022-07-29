@@ -8,10 +8,10 @@ jobs:
   test:
     runs-on: macos-latest
     steps:
-    # - uses: actions/checkout@v1
-    - name: Install Dart
-      uses: google/dart@2.17.6
-    - name: Install app dependencies
-      run: cd src/backend/authentication && dart pub get
-    - name: Test app
-      run: dart test --coverage
+      - uses: actions/checkout@v2
+      - name: Install Dart
+      - uses: dart-lang/setup-dart@v1.3
+      - name: Install dependencies
+        run: cd src/backend/authentication && dart pub get
+      - name: Test app
+        run: dart test --coverage
