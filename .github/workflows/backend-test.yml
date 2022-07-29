@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Dart
-      - uses: dart-lang/setup-dart@v1.3
+        uses: dart-lang/setup-dart@v1.3
       - name: Install dependencies
         run: cd src/backend/authentication && dart pub get
       - name: Test app
