@@ -1,4 +1,4 @@
-name: Test
+name: Frontend Tests
 on:
   push:
     branches: [ master ]
