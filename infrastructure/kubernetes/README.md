@@ -2,6 +2,8 @@
 
 To make life easier for local development, we are using the [kind tool](https://kind.sigs.k8s.io)
 
+I chose kind because it runs everything inside docker containers, and is quite easy to setup and configure.
+
 ## Getting Started
 
 In order to setup and test a local kubernetes cluster, install the kind CLI tool with asdf:
