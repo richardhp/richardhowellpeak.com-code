@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  backend_authentication:
+    build:
+      context: ./backend/authentication
+    ports:
+      - "9090:9090"
+    environment:
+      HTTP_PORT: "9000"
