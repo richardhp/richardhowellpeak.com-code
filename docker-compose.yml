@@ -1,0 +1,6 @@
+version: "3"
+
+services:
+  old_rails_app:
+    build:
+      context: ./src/old-railsapp
