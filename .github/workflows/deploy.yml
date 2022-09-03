@@ -12,6 +12,10 @@ on:
   push: 
     branches: ['master']
 
+env:
+  # This is for the build-stage of the asset pipeline
+  SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+  
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
