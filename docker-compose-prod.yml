@@ -10,7 +10,7 @@ services:
       - PORT=5000
 
   nginx:
-    container_name: nginx
+    container_name: nginx_richardhowellpeak
     build: 
       context: ./src/old-rails-7
       dockerfile: ./nginx.Dockerfile
