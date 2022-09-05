@@ -1,9 +1,12 @@
 import 'package:authentication/config.dart' as config;
 import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as shelf_io;
+import 'package:opentelemetry/sdk.dart' as otel_sdk;
 
 void main() async {
   final conf = config.Config();
+  final exporter =
+      otel_sdk.CollectorExporter(Uri.parse('http://localhost:9090'));
 
   var handler = const shelf.Pipeline()
       .addMiddleware(shelf.logRequests())
