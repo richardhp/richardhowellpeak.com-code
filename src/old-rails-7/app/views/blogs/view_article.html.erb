@@ -1,0 +1,7 @@
+<%= render partial: "blogs/themes/#{@theme}", locals: { blog_post: @blog_post, theme: @theme }%>
+
+<div class="row py-5">
+  <div class="col-12">
+    <%= link_to "Blog Home", blog_path %>
+  </div>
+</div>

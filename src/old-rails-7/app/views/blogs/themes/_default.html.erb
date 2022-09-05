@@ -1,0 +1,10 @@
+<% if blog_post.document.present? %>
+  <%= render partial: "admin/documents/content_templates/document", locals: {document: blog_post.document, theme: theme} %>
+  <% if blog_post.published_at.present? %>
+    <div class="row py-1">
+      <div class="col-12">
+        <p class="text-right">(Published on <%= blog_post.published_at.strftime("%e %b %Y") %>)</p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

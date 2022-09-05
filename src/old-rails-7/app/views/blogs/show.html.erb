@@ -1,0 +1,45 @@
+<div class="row py-5">
+  <div class="col-12">
+    <h1 class="text-center">Blog</h1>
+  </div>
+</div>
+<div class="d-flex justify-content-between py-2">
+  <div>
+    <a href="/blog"> <button class="btn <%= @category.nil? ? "btn-primary" : "btn-secondary"%>">All</button></a>
+  </div> 
+  <% @categories.each do |category| %>
+  <div>
+    <a href="/blog?category=<%= category.title %>"><button class="btn <%= @category == category.title ? "btn-primary" : "btn-secondary"%>"><%= category.title %></button></a>
+  </div>
+  <% end %>
+</div>
+
+<% if @blog_posts.size > 0 %>
+  <% @blog_posts.each do |blog_post| %>
+    <div class="row py-5">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <%= render partial: "blogs/themes/default", locals: { blog_post: blog_post, theme: @theme } %>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <% if blog_post.slug.present? %>
+      <div class="row py-1">
+        <div class="col-12">
+          <a href="/blog/<%= blog_post.slug %>">View article here</a>
+        </div>
+      </div>
+    <% end %>
+    <div class="row py-1">
+      <div class="col-12"> <hr/> </div>
+    </div>
+  <% end %>
+
+  <%= will_paginate @blog_posts, link_separator: "&nbsp;" %>
+<% else %>
+  <div class="row py-5">
+    <div class="col-12">
+      <h6 class="text-center">Sorry no blog posts for this category yet </h6>
+    </div>
+  </div>
+<% end %>

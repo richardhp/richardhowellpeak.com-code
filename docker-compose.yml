@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+#   backend_authentication:
+#     build:
+#       context: ./backend/authentication
+#     ports:
+#       - "9090:9090"
+#     environment:
+#       HTTP_PORT: "9000"
+  old_rails_app:
+    build:
+      context: ./src/old-rails-7
+      dockerfile: ./rails.Dockerfile
+      args:
+        - SECRET_KEY_BASE=$SECRET_KEY_BASE

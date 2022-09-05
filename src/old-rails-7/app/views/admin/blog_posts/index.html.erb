@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Blog Posts</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blog_posts.each do |blog_post| %>
+      <tr>
+        <td>
+          <% if blog_post.document.present? %>
+            <%= blog_post.document.title %>
+            <% end %>
+          </td>
+        <td><%= link_to 'Show', admin_blog_post_path(blog_post), class: "btn btn-success" %></td>
+        <td><%= link_to 'Edit', edit_admin_blog_post_path(blog_post), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Destroy', admin_blog_post_path(blog_post), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <td>
+          <%= 
+            if blog_post.medium_url.nil?
+              button_to 'Publish to Medium', admin_blog_post_publish_to_medium_path(blog_post), method: :post, data: { confirm: 'Are you sure?' }, class: "btn btn-warning" 
+            else
+              link_to 'View on Medium', blog_post.medium_url, class: "btn btn-primary"
+            end
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Blog Post', new_admin_blog_post_path %>

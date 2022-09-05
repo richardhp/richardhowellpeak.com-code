@@ -1,0 +1,100 @@
+<div>
+  <%= image_tag "banner.jpg", class: "img-fluid w-100", alt:"Responsive image" %>
+</div>
+
+<div class="row my-5">
+  <div class="col-12">
+    <h1 class="text-left">Welcome </h1>
+  </div>
+</div>
+
+<div class="row my-5">
+  <div class="col-6">
+    <p class="lead">
+      This is my website
+    </p>
+
+    <p class="text-spaced text-justify">
+      I'm a software developer mainly.  However I do teach, and in my spare time lecture about drug education.  If you want to contact me regarding software development work, teaching work, or book me for a presentation on drug education, please do so.
+    </p>
+    
+  </div>
+</div>
+
+<div class="row py-5">
+  <div class="col-4">
+    <div class="card">
+      <a href="/data-science" class="card-header bg-blue-light">
+        Data Science
+      </a>
+
+      <div class="card-body">
+        I've had a lot of experience as an insurance pricing analyst, dealing with big-data and statistical modelling.
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <a href="/programming/machine-learning" class="card-header bg-blue-muted">
+        Machine Learning
+      </a>
+
+      <div class="card-body">
+        I'm currently studying machine learning and have some examples to look at here.
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <a href="/programming" class="card-header bg-blue-muted">
+        Web Development
+      </a>
+
+      <div class="card-body">
+        I built this site in Ruby on Rails, with a bootstrap and Vue front-end.  I'm available for hire
+        to complete web development projects.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row py-5">
+  <div class="col-4">
+    <div class="card">
+      <a href="<%= blog_path %>" class="card-header bg-green-medium">
+        Blog
+      </a>
+
+      <div class="card-body">
+        Have a read of my <%= link_to 'Blog', blog_path %> and find something that interests you.
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <a href="/teaching" class="card-header bg-green-muted" >
+        Teaching
+      </a>
+
+      <div class="card-body">
+        I am very experienced in teaching maths, physics, economics and computer science.
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <a href="/drugs" class="card-header bg-green-light">
+        Drug Education
+      </a>
+
+      <div class="card-body">
+        You can book me for free public presentations.  Also see my videos and articles about the subject.
+      </div>
+    </div>
+  </div>
+
+</div>

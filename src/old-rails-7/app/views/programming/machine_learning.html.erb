@@ -1,0 +1,112 @@
+<div class="row my-5">
+  <div class="col-12">
+    <h1 class="text-left">Machine Learning </h1>
+  </div>
+</div>
+
+<div class="row my-5">
+  <div class="col-6">
+    <p class="lead">
+      Check out some example projects here
+    </p>
+
+    <p class="text-spaced text-justify">
+      
+    </p>
+    
+  </div>
+</div>
+
+<!-- n-MIST -->
+<div class="row my-5">
+  <div class="col-6">
+    <h6 class="text-left">
+      Character Recognition
+    </h6>
+
+    <p class="text-spaced text-justify">
+      I still need to port this app from my PHP site, but it's a neat little character recognition tool
+    </p>
+  </div>
+</div>
+
+<div class="componentContainer">
+  <div class="row">
+    <div class="col-1">
+    </div>
+    <div class="col-3"> 
+      Draw your digit here:<br><br>And choose which digit it's supposed to be:<br>
+      <form>
+        <input type="radio" name="label[]" value="0"> 0 <br>
+        <input type="radio" name="label[]" value="1"> 1<br>
+        <input type="radio" name="label[]" value="2"> 2<br>
+        <input type="radio" name="label[]" value="3"> 3<br>
+        <input type="radio" name="label[]" value="4"> 4<br>
+        <input type="radio" name="label[]" value="5"> 5<br>
+        <input type="radio" name="label[]" value="6"> 6<br>
+        <input type="radio" name="label[]" value="7"> 7<br>
+        <input type="radio" name="label[]" value="8"> 8<br>
+        <input type="radio" name="label[]" value="9"> 9<br>
+        <button type="submit"> Submit </button>
+      </form>
+    </div>
+    <div class="col-2">
+      <form>
+        <button> Clear</button>
+      </form>
+    </div>
+    <div class="col-3">
+      <canvas width="280" height="280" style="width: 280px; height: 280px; border-style: solid; border-color: rgb(0, 51, 153); cursor: crosshair;"> </canvas>
+    </div>
+    <div class="col-3">
+      Scaled Image: <br>
+      <canvas width="28" height="28" style="width: 28px; height: 28px; border-style: solid; border-color: rgb(68, 146, 153); cursor: crosshair;"> </canvas>
+      <br>Nearest match from the database:<br>
+      <canvas width="28" height="28" style="width: 28px; height: 28px; border-style: solid; border-color: rgb(68, 146, 153); cursor: crosshair;"> </canvas>
+      <br>Should be a:<br><span></span><br><br>Was it correct?<br><span>waiting...</span><br></div>
+    <div class="col-1"></div>
+  </div>
+</div>
+
+
+<!-- Clustering -->
+<div class="row my-5">
+  <div class="col-6">
+    <h6 class="text-left">
+      Clustering
+    </h6>
+
+    <p class="text-spaced text-justify">
+      Again, when ported this will show a simple clustering algorithm.
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12"> 
+      <h1 class="text-center text-secondary" style="text-align: center;">Cluster</h1> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <canvas id="id_cluster_canvas" width="900" height="500"></canvas>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <button class="btn btn-secondary w-100">Add Point</button>
+    </div>
+    <div class="col-4">
+      <select name="distanceFunction">
+        <option value="euclidean">Euclidean Distance</option>
+      </select>
+    </div>
+    <div class="col-4">
+      Number of Clusters <input type="number" value="2">
+    </div>
+    <div class="col-4">
+      Show Lines <input type="checkbox" value="false">
+    </div>
+  </div>
+</div>

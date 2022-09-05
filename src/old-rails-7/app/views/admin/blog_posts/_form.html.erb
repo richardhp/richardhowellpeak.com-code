@@ -1,0 +1,46 @@
+<%= form_with(model: [:admin,blog_post], local: true) do |form| %>
+  <% if blog_post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(blog_post.errors.count, "error") %> prohibited this blog_post from being saved:</h2>
+
+      <ul>
+        <% blog_post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field row py-3">
+    <div class="col-3"> <%= form.label :document %></div>
+    <div class="col-3">
+      <%= form.select :document_id, Admin::Document.all.collect {|x| [x.title, x.id]}, {}, :multiple => false %>
+    </div>
+  </div>
+
+  <div class="field row py-3">
+    <div class="col-3"> <%= form.label :slug %></div>
+    <div class="col-3"><%= form.text_field :slug %> </div>
+  </div>
+
+  <div class="field row py-3">
+    <div class="col-3"> <%= form.label :published %></div>
+    <div class="col-3"><%= form.check_box :published %> </div>
+  </div>
+
+  <div class="field row py-3">
+    <div class="col-3"> <%= form.label :published_at %></div>
+    <div class="col-3"><%= form.date_field :published_at %> </div>
+  </div>
+
+  <div class="field row py-3">
+    <div class="col-3"> <%= form.label :categories %></div>
+    <div class="col-3">
+      <%= form.select :categories, Admin::BlogCategory.all.collect {|x| [x.title, x.id]}, {selected: @blog_post.categories.map { |category| category.id} }, {:multiple => true, size:8} %>
+    </div>
+  </div>
+
+  <div class="actions row py-3">
+    <%= form.submit %>
+  </div>
+<% end %>

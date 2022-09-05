@@ -1,0 +1,5 @@
+<% document.content.each do |fragment| %>
+
+  <%= render partial: "admin/documents/content_templates/#{theme}/#{fragment['type']}", locals: {content: fragment['content'] } %>
+
+<% end %>

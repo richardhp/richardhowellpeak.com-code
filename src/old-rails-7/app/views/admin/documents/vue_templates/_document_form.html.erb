@@ -1,0 +1,198 @@
+<script type="text/x-template" id="document-form-template">
+  <div>
+    <div class="row py-5">
+      <div class="col-12">
+        <div class="row py-2">
+          <div class="col-6"> Internal Title: </div>
+          <div class="col-6"> <input type="text" v-model="main_title" /> </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-6"> Description: </div>
+          <div class="col-6"> <input type="text" v-model="main_description" /> </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-6"> Blurb: </div>
+          <div class="col-6"> <input type="text" v-model="main_blurb" /> </div>
+        </div>
+        <hr/>
+      </div>
+    </div>
+    <div v-for="fragment in fragments">
+      <div class="row py-3">
+        <div class="col-7"> <fragment :data="fragment"></fragment> </div>
+        <div class="col-1"> <button class="btn btn-danger" v-on:click="remove_fragment(fragment.order)">Remove </button> </div>
+        <div class="col-1"> 
+            <div v-on:click="move_fragment(fragment.order, -1)" class="pl-4"><%= octicon "arrow-up", :height => 32,  :class => "right left", :"aria-label" => "hi" %> </div>
+            <div v-on:click="move_fragment(fragment.order, 1)" class="pl-4"><%= octicon "arrow-down", :height => 32,  :class => "right left", :"aria-label" => "hi" %> </div>
+         </div>
+        <div class="col-3" >  
+          <select v-model="content_type" class="">
+            <option v-for="option in content_type_options"> {{option}} </option>
+          </select>
+          <button class="btn btn-success" v-on:click="insert_fragment(fragment.order)">Insert</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row py-3">
+      <div class="col-6"> 
+        <select v-model="content_type" class="w-100">
+          <option v-for="option in content_type_options"> {{option}} </option>
+        </select> 
+      </div>
+
+      <div class="col-6">
+        <button v-on:click="add_fragment" class="btn btn-secondary">Add Fragment</button>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col-12"> <button class="btn btn-primary" v-on:click="save_document"> Save Document</button> </div>  </div>
+    </div>
+  </div>
+</script>
+
+
+<script>
+Vue.component('document-form', {
+  props:['init_data'],
+  template: '#document-form-template',
+  data() {
+    return {
+      order:1,
+      ruby_id:null,
+      main_title:"",
+      main_description:"",
+      main_blurb:"",
+      content_type: "<%= @content_types.first.name %>",
+      content_type_options: <%= raw @content_types.map { |c| c.name  } %>,
+      fragments: []
+    }
+  },
+  mounted() {
+    var init_data = JSON.parse(this.init_data);
+    this.main_title = init_data.title;
+    this.main_description = init_data.description;
+    this.main_blurb = init_data.blurb;
+    if(init_data.id) {
+      this.ruby_id = init_data.id;
+    }
+    if(init_data.content) {
+      for( fragment of init_data.content) {
+        this.push_fragment(fragment.type, fragment.content);
+      }
+    }
+  },
+  methods: {
+    refresh_fragments(new_fragments) {
+      this.fragments = [];
+      this.$forceUpdate();
+      setTimeout(() => {
+        this.fragments = new_fragments 
+        this.$forceUpdate();
+      }, 10);
+    },
+    add_fragment() {
+      this.push_fragment(this.content_type,"")
+    },
+    //This is still a bit buggy
+    insert_fragment(location) {
+      let document_fragments = this.grab_content_data();
+      //Insert
+      document_fragments.splice(location, 0,{
+          order: location + 1,
+          type: this.content_type,
+          content: ""
+        });
+      //Vue will try to avoid re-rendering if component type is the same
+      for(var i = location + 1; i < document_fragments.length; i++) {
+        document_fragments[i].order++;
+      }
+      this.refresh_fragments(document_fragments); 
+    },
+    push_fragment(type, content="") {
+      this.fragments.push(
+        {
+          order: this.order,
+          type: type,
+          content: content
+        }
+      )
+      this.order++;
+    },
+    remove_fragment(order) {
+      this.fragments = _.filter(this.fragments, f => f.order !== order)
+    },
+    //Up is -1, down is 1
+    move_fragment(order, direction) {
+      //Cache the contents
+      let document_fragments = this.grab_content_data();
+      //Do nothing, if item is at end
+      if ( order === 1 && direction < 0  || order === this.fragments.length && direction > 0) {
+        return;
+      }
+      for(let i in document_fragments) {
+        //This matches the one we are looking for
+        if ( document_fragments[i].order === order ) {
+          document_fragments[i].order += direction
+        }
+        //This is how we match the one we want to swap
+        else if ( document_fragments[i].order === order + direction) {
+          document_fragments[i].order -= direction
+        }
+      }
+      //Re-sort the array
+      document_fragments = _.sortBy(document_fragments, f => f.order);
+      this.refresh_fragments( document_fragments );
+    },
+    grab_content_data() {
+      let document_fragments = [];
+      let order = 1;
+      for( child of this.$children) {
+        let document_fragment = {
+          order:order,
+          type:child.data.type
+        }
+        for( subchild of child.$children) {
+          document_fragment['content'] = subchild.content;
+        }
+        document_fragments.push(document_fragment);
+        order++;
+      }
+      return document_fragments;
+    },
+    save_document() {
+      let document_fragments = this.grab_content_data();
+      //Submit the JSON object
+      let json_data = {
+        title: this.main_title,
+        description: this.main_description,
+        blurb: this.main_blurb,
+        content:document_fragments
+      }
+      var method = "post"
+      var url =  '<%= admin_documents_path %>'
+      if(this.ruby_id) {
+        method = "put";
+        url =  '<%= admin_document_path(@admin_document) if @admin_document.id.present? %>'
+      }
+      fetch(url, {
+        method:method,
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify({admin_document:json_data,
+        authenticity_token: "<%= form_authenticity_token %>"})
+      }).then( resp => {
+        if( resp.status === 200) {
+          window.location = "<%= admin_documents_path %>"
+        } else {
+          alert("Error")
+        }
+      })
+
+    }
+  }
+});
+</script>

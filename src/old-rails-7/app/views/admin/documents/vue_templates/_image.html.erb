@@ -1,0 +1,25 @@
+<script type="text/x-template" id="fragment-image-template">
+  <div>
+    <input type="text" class="w-100" v-model="content"/>
+  </div>
+</script>
+
+<script>
+Vue.component('fragment-image', {
+  template: "#fragment-image-template",
+  props:['init_data'],
+  data() {
+    return {
+      content: ""
+    }
+  },
+  mounted() {
+    if(this.init_data.content){
+      this.content = this.init_data.content;
+    }
+  },
+  methods: {
+    
+  }
+});
+</script>
