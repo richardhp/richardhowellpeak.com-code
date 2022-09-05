@@ -4,3 +4,6 @@ services:
   old_rails_app:
     build:
       context: ./src/old-railsapp
+      dockerfile: ./rails.Dockerfile
+      args:
+        - SECRET_KEY_BASE=$SECRET_KEY_BASE
