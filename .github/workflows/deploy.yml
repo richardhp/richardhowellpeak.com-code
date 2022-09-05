@@ -37,10 +37,10 @@ jobs:
           chmod 644 $HOME/.ssh/known_hosts
 
       - name: Build the Docker images
-        run: docker-compose -H ssh://richardhp@139.162.203.91 -f ./docker-compose.yml -f ./docker-compose-prod.yml build --force --no-cache
+        run: docker-compose -H "ssh://richardhp@${{ secrets.LINODE_IP }}" -f ./docker-compose.yml -f ./docker-compose-prod.yml build --force --no-cache
 
       # - name: Stop the Docker images
-      #   run: docker-compose -H ssh://richardhp@139.162.203.91 -f ./docker-compose.yml -f ./docker-compose-prod.yml down
+      #   run: docker-compose -H "ssh://richardhp@${{ secrets.LINODE_IP }}" -f ./docker-compose.yml -f ./docker-compose-prod.yml down
 
       - name: Deploy the Docker images
-        run: docker-compose -H ssh://richardhp@139.162.203.91 -f ./docker-compose.yml -f ./docker-compose-prod.yml up -d --build --force-recreate
+        run: docker-compose -H "ssh://richardhp@${{ secrets.LINODE_IP }}" -f ./docker-compose.yml -f ./docker-compose-prod.yml up -d --build --force-recreate

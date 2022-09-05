@@ -12,7 +12,7 @@ services:
   nginx:
     container_name: nginx
     build: 
-      context: ./src/old-railsapp
+      context: ./src/old-rails-7
       dockerfile: ./nginx.Dockerfile
       args:
         SECRET_KEY_BASE: $SECRET_KEY_BASE
