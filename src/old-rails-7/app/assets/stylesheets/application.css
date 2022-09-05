@@ -1,0 +1,88 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+  padding-top: 70px;   
+}
+
+.navbar-fixed-top {
+  position: fixed !important;
+  top: 0;
+  border-width: 0 0 1px;
+  right: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.top-navbar {
+  width: 100%;
+  background-color: black;
+}
+
+.footer {
+  background-color: black;
+}
+
+.admin-navbar {
+  background-color: #bb4719;
+}
+
+/** Text **/
+.text-spaced {
+  line-height: 24px;
+}
+
+.text-large {
+  font-size: 18px;
+}
+
+.text-spaced-large {
+  line-height: 36px;
+}
+
+/** Bg-Colors **/
+.bg-blue-light {
+  background-color: #98c1d9 !important;
+}
+.bg-blue-muted{
+  background-color: #6997b2 !important;
+}
+.bg-blue-medium {
+  background-color: #39627a !important;
+}
+.bg-blue-dark {
+  background-color: #233b49 !important;
+}
+.bg-blue-very-dark {
+  background-color: #172026 !important;
+}
+
+.bg-green-light {
+  background-color: #a1cca5 !important;
+}
+.bg-green-muted {
+  background-color: #8fba93 !important;
+}
+.bg-green-medium {
+  background-color: #6f9673 !important;
+}
+.bg-green-dark {
+  background-color: #405b43 !important;
+}
+.bg-green-very-dark{
+  background-color: #101c11 !important;
+}
+

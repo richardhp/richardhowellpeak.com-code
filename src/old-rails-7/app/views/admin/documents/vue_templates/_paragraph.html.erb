@@ -1,0 +1,25 @@
+<script type="text/x-template" id="fragment-paragraph-template">
+  <div>
+    <textarea type="text" class="w-100" v-model="content" rows="10"></textarea>
+  </div>
+</script>
+
+<script>
+Vue.component('fragment-paragraph', {
+  template: "#fragment-paragraph-template",
+  props:['init_data'],
+  data() {
+    return {
+      content: ""
+    }
+  },
+  mounted() {
+    if(this.init_data.content){
+      this.content = this.init_data.content;
+    }
+  },
+  methods: {
+    
+  }
+});
+</script>

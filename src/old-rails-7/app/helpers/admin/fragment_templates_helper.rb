@@ -1,0 +1,2 @@
+module Admin::FragmentTemplatesHelper
+end

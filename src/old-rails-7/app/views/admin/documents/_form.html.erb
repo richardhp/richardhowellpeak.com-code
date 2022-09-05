@@ -1,0 +1,25 @@
+
+
+
+  <div id="vue-form">
+    <document-form init_data="<%= @admin_document.to_json %>">
+      
+    </document-form>
+  </div>
+
+<%= render "admin/documents/vue_templates/document_form"%>
+<%= render "admin/documents/vue_templates/fragment"%>
+<%= render "admin/documents/vue_templates/paragraph"%>
+<%= render "admin/documents/vue_templates/title"%>
+<%= render "admin/documents/vue_templates/image"%>
+<%= render "admin/documents/vue_templates/video"%>
+<%= render "admin/documents/vue_templates/subtitle"%>
+<%= render "admin/documents/vue_templates/maths-formula"%>
+
+<script>
+new Vue({
+  el: '#vue-form',
+  data: {
+  }
+});
+</script>

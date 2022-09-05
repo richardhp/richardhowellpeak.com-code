@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<%= render partial: "admin/documents/content_templates/#{@theme}/document_title", locals: {title: @admin_document.title} %>
+<%= render partial: "admin/documents/content_templates/#{@theme}/description_blurb", locals: {description: @admin_document.description, blurb: @admin_document.blurb} %>
+
+<div class="row">
+  <div class="col-12"><hr/></div>
+</div>
+
+<%= render partial: "admin/documents/content_templates/document", locals: { document: @admin_document, theme: @theme } %>
+
+<%= link_to 'Edit', edit_admin_document_path(@admin_document) %> |
+<%= link_to 'Back', admin_documents_path %>

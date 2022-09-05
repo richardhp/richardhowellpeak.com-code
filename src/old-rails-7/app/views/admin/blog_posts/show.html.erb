@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= 
+    if @blog_post.document.present?
+      @blog_post.document.title 
+    else 
+      "Not assigned yet"
+    end %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @blog_post.slug %>
+</p>
+
+<%= link_to 'Edit', edit_admin_blog_post_path(@blog_post) %> |
+<%= link_to 'Back', admin_blog_posts_path %>

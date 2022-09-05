@@ -1,0 +1,25 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.js"></script>
+
+<script type="text/x-template" id="fragment-template">
+  <div class="row py-2">
+    <div class="col-2"> {{data.type}} </div>
+    <div class="col-10"> 
+      <component :is="'fragment-' + data.type" :init_data="data"/>
+     </div>
+  </div>
+</script>
+
+<script>
+Vue.component('fragment', {
+  template: "#fragment-template",
+  props:['data'],
+  data() {
+    return {
+      content: ""
+    }
+  },
+  methods: {
+    
+  }
+});
+</script>

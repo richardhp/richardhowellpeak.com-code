@@ -1,0 +1,24 @@
+
+<%= form_with(url: "/admin/login", method: "post") do %>
+  <div class="row py-3">
+    <div class="col-3"></div>
+    <%= label_tag(:email, "Email:", class: "col-3") %>
+    <%= text_field_tag(:email, nil, class: "col-3") %>
+    <div class="col-3"></div>
+  </div>
+
+  <div class="row py-3">
+    <div class="col-3"></div>
+    <%= label_tag(:email, "Password:", class: "col-3") %>
+    <%= password_field_tag(:password, nil, class: "col-3") %>
+    <div class="col-3"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <%= submit_tag("Login", class: "btn btn-primary w-100") %>
+    </div>
+    <div class="col-3"></div>
+  </div>
+<% end %>
