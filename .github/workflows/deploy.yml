@@ -7,15 +7,16 @@ on:
   #   types: ['completed']
   #   branches: [ 'master' ]
   # Will run if we create a new release
-  # release:
-  #   types: [created]
-  push: 
-    branches: ['master']
+  # push: 
+  #   branches: ['master']
+  release:
+    types: [created]
 
 env:
   # This is for the build-stage of the asset pipeline
   SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
-  
+  RELEASE_VERSION: ${{ github.event.release.tag_name }}
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest

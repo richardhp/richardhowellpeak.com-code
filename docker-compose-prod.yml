@@ -2,6 +2,7 @@ version: "3"
 
 services:
   old_rails_app:
+    image: old_rails_app:${RELEASE_VERSION}
     command: bundle exec puma -C config/puma.rb -e production
     restart: always
     environment:
@@ -12,6 +13,7 @@ services:
       - default
 
   nginx_richardhowellpeak:
+    image: nginx_richardhowellpeak:${RELEASE_VERSION}
     container_name: nginx_richardhowellpeak
     build: 
       context: ./src/old-rails-7
