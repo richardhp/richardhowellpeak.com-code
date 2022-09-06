@@ -37,12 +37,6 @@ jobs:
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> $HOME/.ssh/known_hosts
           chmod 644 $HOME/.ssh/known_hosts
 
-      - name: Debug actions
-        run: pwd
-
-      - name: Debug actions
-        run: ls
-
       # - name: Build the Docker images
       #   run: docker-compose -H "ssh://richardhp@${{ secrets.LINODE_IP }}" -f ./docker-compose.yml -f ./docker-compose-prod.yml build --force --no-cache
 
