@@ -12,9 +12,9 @@ services:
     networks:
       - default
 
-  nginx_richardhowellpeak:
-    image: nginx_richardhowellpeak:${RELEASE_VERSION}
-    container_name: nginx_richardhowellpeak
+  richardhowellpeak_nginx:
+    image: richardhowellpeak_nginx:${RELEASE_VERSION}
+    container_name: richardhowellpeak_nginx
     build: 
       context: ./src/old-rails-7
       dockerfile: ./nginx.Dockerfile
