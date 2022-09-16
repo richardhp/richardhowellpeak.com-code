@@ -28,6 +28,23 @@ services:
       - proxy-net
       - default
 
+  database:
+    image: postgres:14.5-alpine
+    container_name: database
+    environment:
+      - POSTGRES_USER=richardhp
+      - POSTGRES_DATABASE=richardhp
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+    volumes:
+      - /home/richardhp/docker-volumes/richardhowellpeak/postgresql:/var/lib/postgresql/data
+    healthcheck:
+      test: curl -s https://localhost:5432 >/dev/null; if [[ $$? == 52 ]]; then echo 0; else echo 1; fi
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - 5432:5432
+
 networks:
   proxy-net:
     external: true
