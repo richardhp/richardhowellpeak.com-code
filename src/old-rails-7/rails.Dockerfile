@@ -7,3 +7,5 @@ WORKDIR /app
 COPY Gemfile* ./
 RUN bundle install
 COPY . .
+
+RUN RAILS_ENV=production rails assets:precompile
