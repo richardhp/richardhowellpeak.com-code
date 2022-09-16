@@ -36,12 +36,13 @@
 
   <div class="col-4">
     <div class="card">
-      <a href="/programming/machine-learning" class="card-header bg-blue-muted">
-        Machine Learning
+      <a href="/programming" class="card-header bg-blue-muted">
+        Web Development
       </a>
 
       <div class="card-body">
-        I'm currently studying machine learning and have some examples to look at here.
+        I built this site in Ruby on Rails, with a bootstrap front-end.  I'm available for hire
+        to complete web development projects.
       </div>
     </div>
   </div>
@@ -49,31 +50,20 @@
   <div class="col-4">
     <div class="card">
       <a href="/programming" class="card-header bg-blue-muted">
-        Web Development
+        Github
       </a>
 
       <div class="card-body">
-        I built this site in Ruby on Rails, with a bootstrap and Vue front-end.  I'm available for hire
-        to complete web development projects.
+        This website is a <%= link_to "public project", "https://github.com/users/richardhp/projects/1" %> to showcase how I've built the site.
       </div>
     </div>
   </div>
+
 </div>
 
 <div class="row py-5">
-  <div class="col-4">
-    <div class="card">
-      <a href="<%= blog_path %>" class="card-header bg-green-medium">
-        Blog
-      </a>
 
-      <div class="card-body">
-        Have a read of my <%= link_to 'Blog', blog_path %> and find something that interests you.
-      </div>
-    </div>
-  </div>
-
-  <div class="col-4">
+  <div class="col-6">
     <div class="card">
       <a href="/teaching" class="card-header bg-green-muted" >
         Teaching
@@ -85,7 +75,7 @@
     </div>
   </div>
 
-  <div class="col-4">
+  <div class="col-6">
     <div class="card">
       <a href="/drugs" class="card-header bg-green-light">
         Drug Education
