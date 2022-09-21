@@ -28,9 +28,9 @@ services:
       - proxy-net
       - default
 
-  database:
+  richardhowellpeak_database:
     image: postgres:14.5-alpine
-    container_name: database
+    container_name: richardhowellpeak_database
     environment:
       - POSTGRES_USER=richardhp
       - POSTGRES_DATABASE=richardhp
