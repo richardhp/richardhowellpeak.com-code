@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  old_rails_app:
-    image: old_rails_app:${RELEASE_VERSION}
+  rails_backend:
+    image: rails_backend:${RELEASE_VERSION}
     command: bundle exec puma -C config/puma.rb -e production
     restart: always
     environment:
@@ -17,7 +17,7 @@ services:
     image: richardhowellpeak_nginx:${RELEASE_VERSION}
     container_name: richardhowellpeak_nginx
     build: 
-      context: ./src/old-rails-7
+      context: ./src/rails-backend
       dockerfile: ./nginx.Dockerfile
       args:
         SECRET_KEY_BASE: $SECRET_KEY_BASE
