@@ -7,17 +7,18 @@
 
 class CounterExporter
 
-  def initialize(name, docstring)
+  def initialize(name, docstring, label_name)
     @name = name
     @docstring = docstring
+    @label_name = label_name
     @values = {}
   end
 
   def increment(label)
-    @values[timestamp] = { } if ! @values.key? timestamp
-    @values[timestamp][label] = 0 if ! @values[timestamp].key? label
+    @values[label] = { } if ! @values.key? label
+    @values[label][timestamp] = 0 if ! @values[label].key? timestamp
 
-    @values[timestamp][label] += 1
+    @values[label][timestamp] += 1
   end
 
   def values 
@@ -28,12 +29,23 @@ class CounterExporter
     lines = []
     lines << "# TYPE #{@name} counter"
     lines << "# HELP #{@name} #{@docstring}"
+    @values.keys.each do |label|
+      @values[label].keys.each do |tstamp|
+        puts label
+        lines << "#{@name}{#{@label_name}=\"#{label}\"} #{@values[label][timestamp].to_f} #{DateTime.strptime(tstamp, "%Y:%m:%d-%H").strftime("%s")}"
+      end
+    end
+    puts lines.to_s
     lines.join("\r\n")
+  end
+
+  def export_styled
+    "<pre style=\"word-wrap: break-word; white-space: pre-wrap;\">#{export}</pre>"
   end
 
   private
   def timestamp
-    Time.now.strftime("%Y:%m:%d-%H")
+    DateTime.now.strftime("%Y:%m:%d-%H")
   end
 
 end
