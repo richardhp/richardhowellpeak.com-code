@@ -21,6 +21,5 @@ rule_files:
 # Here it's Prometheus itself.
 scrape_configs:
   
-
 remote_read:
   - url: tcp://clickhouse:9000/?database=signoz_metrics
