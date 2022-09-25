@@ -24,6 +24,12 @@ receivers:
           static_configs:
             - targets:
               - otel-collector:8889
+        - job_name: "ruby-linode"
+          scrape_interval: 60s
+          static_configs:
+            - targets:
+              - ruby_linode:80
+          metrics_path: "/metrics"
 
 processors:
   batch:
