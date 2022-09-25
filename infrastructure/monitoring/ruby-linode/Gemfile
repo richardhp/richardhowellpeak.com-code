@@ -6,3 +6,6 @@ gem 'opentelemetry-instrumentation-all'
 gem 'prometheus-client'
 gem 'sinatra'
 gem 'puma'
+gem "async", "~> 1.30"
+
+gem "async-http", "~> 0.59.2"
