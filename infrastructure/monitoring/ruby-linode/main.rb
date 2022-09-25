@@ -1,5 +1,5 @@
 require 'sinatra'
-require './lib/exporter'
+require './src/exporter'
 
 # Load env
 LINODE_API_KEY = ENV["LINODE_API_KEY"]
@@ -10,6 +10,7 @@ set :bind, '0.0.0.0'
 set :port, 80
 
 get '/metrics' do
+  puts exporter.export.to_s
   exporter.export
 end
 

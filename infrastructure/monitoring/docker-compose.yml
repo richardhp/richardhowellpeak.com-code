@@ -88,7 +88,7 @@ services:
       # - "1777:1777"     # pprof extension
       - "4317:4317"     # OTLP gRPC receiver
       - "4318:4318"     # OTLP HTTP receiver
-      # - "8888:8888"     # OtelCollector internal metrics
+      - "8888:8888"     # OtelCollector internal metrics
       # - "8889:8889"     # signoz spanmetrics exposed by the agent
       # - "9411:9411"     # Zipkin port
       # - "13133:13133"   # health check extension
@@ -107,9 +107,9 @@ services:
     command: ["--config=/etc/otel-collector-metrics-config.yaml"]
     volumes:
       - ./signoz/otel-collector-metrics-config.yaml:/etc/otel-collector-metrics-config.yaml
-    # ports:
+    ports:
     #   - "1777:1777"     # pprof extension
-    #   - "8888:8888"     # OtelCollector internal metrics
+      - "8889:8888"     # OtelCollector internal metrics
     #   - "13133:13133"   # Health check extension
     #   - "55679:55679"   # zPages extension
     restart: on-failure

@@ -31,12 +31,10 @@ class CounterExporter
     lines << "# HELP #{@name} #{@docstring}"
     @values.keys.each do |label|
       @values[label].keys.each do |tstamp|
-        puts label
         lines << "#{@name}{#{@label_name}=\"#{label}\"} #{@values[label][timestamp].to_f} #{DateTime.strptime(tstamp, "%Y:%m:%d-%H").strftime("%s")}"
       end
     end
-    puts lines.to_s
-    lines.join("\r\n")
+    lines.join("\n")
   end
 
   def export_styled

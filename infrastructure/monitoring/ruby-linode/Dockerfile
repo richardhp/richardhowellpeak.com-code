@@ -4,5 +4,5 @@ COPY Gemfile* .
 RUN bundle install 
 
 COPY main.rb .
-RUN mkdir ./lib
-COPY ./lib/*.rb ./lib
+RUN mkdir ./src
+COPY ./src/*.rb ./src
