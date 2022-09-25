@@ -8,11 +8,16 @@ require 'prometheus/middleware/exporter'
 prometheus = Prometheus::Client.registry
 
 # create a new counter metric
-http_requests = Prometheus::Client::Counter.new(:http_requests, docstring: 'A counter of HTTP requests made')
+linode_cpu = Prometheus::Client::Counter.new(:linode_cpu, docstring: 'A counter of linode CPU usage', labels: [:linode_id])
 # register the metric
-prometheus.register(http_requests)
+prometheus.register(linode_cpu)
 
 # start using the counter
-http_requests.increment
+linode_cpu.increment(by: 1, labels: {  linode_id: 'abc' })
 
 use Prometheus::Middleware::Exporter
+
+get '/:id' do
+  linode_cpu.increment(by: 1, labels: {  linode_id: params["id"] })
+end
+

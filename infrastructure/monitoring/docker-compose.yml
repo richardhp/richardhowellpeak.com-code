@@ -122,3 +122,5 @@ services:
     command: ruby main.rb
     ports:
       - 9000:80
+    environment:
+      - LINODE_PERSONAL_ACCESS_TOKEN=$LINODE_PERSONAL_ACCESS_TOKEN

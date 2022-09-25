@@ -31,7 +31,8 @@ class CounterExporter
     lines << "# HELP #{@name} #{@docstring}"
     @values.keys.each do |label|
       @values[label].keys.each do |tstamp|
-        lines << "#{@name}{#{@label_name}=\"#{label}\"} #{@values[label][timestamp].to_f} #{DateTime.strptime(tstamp, "%Y:%m:%d-%H").strftime("%s")}"
+        # lines << "#{@name}{#{@label_name}=\"#{label}\"} #{@values[label][timestamp].to_f} #{DateTime.strptime(tstamp, "%Y:%m:%d-%H").strftime("%s")}"
+        lines << "#{@name}{#{@label_name}=\"#{label}\"} #{@values[label][timestamp].to_f}"
       end
     end
     lines.join("\n")

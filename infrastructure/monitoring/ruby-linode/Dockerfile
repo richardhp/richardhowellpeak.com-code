@@ -1,8 +1,8 @@
 FROM ruby:3.0.2
 
-COPY Gemfile* .
+COPY Gemfile* ./
 RUN bundle install 
 
 COPY main.rb .
 RUN mkdir ./src
-COPY ./src/*.rb ./src
+COPY ./src/*.rb ./src/
