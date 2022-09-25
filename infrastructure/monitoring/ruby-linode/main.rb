@@ -3,10 +3,12 @@ require './src/prometheus'
 require './src/linode'
 require './src/metrics-server'
 
+prometheus = PrometheusMetrics.new
+
 # This is quite convoluted but it works.  We wrap everything inside an EventLoop
 Async do |task|
   # Start the polling loop
-  poll_linode
+  poll_linode(prometheus)
   # Nest Sinatra inside an async task, so we can continue after server has started
   Async do |t| 
     MetricsServer.run!
