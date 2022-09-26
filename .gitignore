@@ -21,3 +21,5 @@ doc/api/
 *.js.map
 .env
 .vscode
+
+**/**.DS_Store
