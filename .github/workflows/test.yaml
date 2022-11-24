@@ -10,3 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          event-type: deploy
+          client-payload: '{ "release_version": "${{ github.event.release.tag_name }}" }'
