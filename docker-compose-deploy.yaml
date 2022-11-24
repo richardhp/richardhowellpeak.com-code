@@ -1,8 +1,9 @@
 version: "3"
 
 services:
-  rails_backend:
-    image: rails_backend:${RELEASE_VERSION}
+  richardhowellpeak_rails:
+    image: ghcr.io/richardhp/richardhowellpeak_rails:${RELEASE_VERSION}
+    container_name: richardhowellpeak_rails
     command: bundle exec puma -C config/puma.rb -e production
     restart: always
     environment:
@@ -17,7 +18,7 @@ services:
       - default
 
   richardhowellpeak_nginx:
-    image: richardhowellpeak_nginx:${RELEASE_VERSION}
+    image: ghcr.io/richardhp/richardhowellpeak_nginx:${RELEASE_VERSION}
     container_name: richardhowellpeak_nginx
     build: 
       context: ./src/rails-backend

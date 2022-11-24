@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  rails_backend:
+  richardhowellpeak_rails:
     image: ghcr.io/richardhp/richardhowellpeak_rails:${RELEASE_VERSION}
     build:
       context: ./src/rails-backend
