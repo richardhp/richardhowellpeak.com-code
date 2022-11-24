@@ -15,4 +15,4 @@ services:
       context: ./src/rails-backend
       dockerfile: ./nginx.Dockerfile
       args:
-        SECRET_KEY_BASE: $SECRET_KEY_BASE
+        RELEASE_VERSION: $RELEASE_VERSION
