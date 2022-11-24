@@ -1,4 +1,4 @@
-name: GitHub DeltaHomeIT Build
+name: Build
 on: 
   # Will run if we create a new release
   release:
@@ -18,7 +18,7 @@ env:
 jobs:
   build_backend:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'release' && github.event.action == 'created' }}
+    if: ${{ (github.event_name == 'release' && github.event.action == 'created') || github.event_name == 'workflow_dispatch' }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
