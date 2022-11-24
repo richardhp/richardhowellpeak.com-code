@@ -1,0 +1,6 @@
+version: "3"
+
+services:
+  migration:
+    image: dimitri/pgloader:v3.6.7
+    command: pgloader postgres://postgres:$OLD_POSTGRES_PASSWORD@$LINODE_IP/richardhowellpeak pgsql://postgres:$POSTGRES_PASSWORD@$LINODE_IP/richardhowellpeak

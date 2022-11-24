@@ -1,0 +1,37 @@
+<turbo-frame id="body">
+  <div class="row my-5">
+    <div class="col-12">
+      <h1 class="text-left">Podcasts </h1>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-6">
+      <p class="lead">
+        All my podcasts are hosted externally on <a href="<%= @podcast_url %>">podbeans</a>.
+      </p>
+
+      <p class="text-spaced text-justify">
+      A list of episodes is listed below:
+      </p>
+      
+    </div>
+  </div>
+
+  <% @episodes.each do |episode| %>
+
+  <div class="row my-3">
+    <div class="col-12">
+      <p class="lead">
+        <a href="<%= episode["link"]%>"> <%= episode["title"].first %></a>
+      </p>
+
+      <p class="text-spaced text-justify">
+      <%= raw episode["description"]%>
+      </p>
+      
+    </div>
+  </div>
+
+  <% end %>
+</turbo-frame>

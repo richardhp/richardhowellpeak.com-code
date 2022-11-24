@@ -25,7 +25,7 @@ receivers:
             - targets:
               - otel-collector:8889
         - job_name: "ruby-linode"
-          scrape_interval: 60s
+          scrape_interval: 10s
           static_configs:
             - targets:
               - ruby_linode:80

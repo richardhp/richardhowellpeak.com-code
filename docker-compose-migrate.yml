@@ -1,6 +1,0 @@
-version: "3"
-
-services:
-  migration:
-    image: dimitri/pgloader:v3.6.7
-    command: pgloader postgres://postgres:$OLD_POSTGRES_PASSWORD@139.162.197.169/richardhp pgsql://postgres:$POSTGRES_PASSWORD@139.162.203.91/richardhp

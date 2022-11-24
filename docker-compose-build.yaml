@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  richardhowellpeak_rails:
+    image: ghcr.io/richardhp/richardhowellpeak_rails:${RELEASE_VERSION}
+    build:
+      context: ./src/rails-backend
+      dockerfile: ./rails.Dockerfile
+      args:
+        SECRET_KEY_BASE: $SECRET_KEY_BASE
+
+  richardhowellpeak_nginx:
+    image: ghcr.io/richardhp/richardhowellpeak_nginx:${RELEASE_VERSION}
+    build: 
+      context: ./src/rails-backend
+      dockerfile: ./nginx.Dockerfile
+      args:
+        RELEASE_VERSION: $RELEASE_VERSION

@@ -1,28 +1,21 @@
-require 'sinatra'
-require './src/exporter'
+require 'async'
+require './src/prometheus'
+require './src/linode'
+require './src/metrics-server'
 
-# Load env
-LINODE_API_KEY = ENV["LINODE_API_KEY"]
+prometheus = PrometheusMetrics.new
 
-exporter = CounterExporter.new('linode_cpu', 'cpu usage on linode', 'linode_id')
-
-set :bind, '0.0.0.0'
-set :port, 80
-
-get '/metrics' do
-  puts exporter.export.to_s
-  exporter.export
+# This is quite convoluted but it works.  We wrap everything inside an EventLoop
+Async do |task|
+  # Start the polling loop
+  poll_linode(prometheus)
+  # Nest Sinatra inside an async task, so we can continue after server has started
+  Async do |t| 
+    MetricsServer.run!
+  end
+  # Override the signal traps done by sinatra so we can force the application to quite at the top level
+  Signal.trap('INT') do |sig|
+    puts "Received Signal #{sig}"
+    exit
+  end
 end
-
-get '/metrics/styled' do
-  exporter.export_styled
-end
-
-get '/favicon.ico' do 
-end
-
-get '/:id' do
-  exporter.increment(params["id"])
-  "Data: #{exporter.values}"
-end
-
