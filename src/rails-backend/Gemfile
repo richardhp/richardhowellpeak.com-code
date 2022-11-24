@@ -78,3 +78,5 @@ gem "font-awesome-sass", "~> 6.2"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "pg", "~> 1.4"
+
+gem "will_paginate", "~> 3.3"
