@@ -1,17 +1,15 @@
 name: Deploy
 
 on:
-  # This will only run if Test workflow completes and we are on master branch.
-  # workflow_run:
-  #   workflows: ['Test']
-  #   types: ['completed']
-  #   branches: [ 'master' ]
-  # Will run if we create a new release
-  # push: 
-  #   branches: ['master']
-  release:
-    types: [created]
-
+  # Will run after a successful test
+  repository_dispatch:
+    types: [deploy]
+  # Will run if manually triggered
+  workflow_dispatch:
+    inputs:
+      releaseVersion:
+        description: Which docker tag to use
+        required: true
 env:
   # This is for the build-stage of the asset pipeline
   SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}

@@ -1,14 +1,7 @@
-FROM ruby:3.0.2 as builder
-
 ARG SECRET_KEY_BASE
+ARG RELEASE_VERSION
 
-RUN mkdir -p /app
-WORKDIR /app
-COPY Gemfile* ./
-RUN bundle install
-COPY . .
-
-RUN RAILS_ENV=production rails assets:precompile
+FROM ghcr.io/richardhp/richardhowellpeak_rails:${RELEASE_VERSION} as builder
 
 FROM nginx:1.23.1-alpine
 

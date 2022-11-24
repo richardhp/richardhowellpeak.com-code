@@ -1,0 +1,12 @@
+name: Backend Tests
+on:
+  # Will run after a successful build
+  repository_dispatch:
+    types: [run-tests]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+

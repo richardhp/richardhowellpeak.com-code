@@ -1,0 +1,39 @@
+name: GitHub DeltaHomeIT Build
+on: 
+  # Will run if we create a new release
+  release:
+    types: [created]
+  # Allows us to build the app
+  workflow_dispatch:
+    inputs:
+      releaseVersion:
+        description: What to tag the docker image with
+        required: true
+
+env:
+  RELEASE_VERSION: "${{ github.event.release.tag_name || github.event.inputs.releaseVersion }}"
+  GITHUB_TOKEN: ${{ github.token }}
+  SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+
+jobs:
+  build_backend:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'release' && github.event.action == 'created' }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Docker Login
+        run: echo $GITHUB_TOKEN | docker login ghcr.io -u richardhp --password-stdin
+
+      - name: Build Docker Images
+        run: docker-compose -f ./docker-compose-build.yaml build
+
+      - name: Push Docker Images
+        run: docker-compose -f ./docker-compose-build.yaml push
+
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          event-type: run-tests
+          client-payload: '{ "release_version": "${{ github.event.release.tag_name }}" }'
