@@ -10,6 +10,9 @@ services:
       - SECRET_KEY_BASE=$SECRET_KEY_BASE
       - PORT=5000
       - RAILS_SERVE_STATIC_FILES=false
+      - RELEASE_VERSION=$RELEASE_VERSION
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_HOST=$LINODE_IP
     networks:
       - default
 
@@ -27,23 +30,6 @@ services:
     networks:
       - proxy-net
       - default
-
-  richardhowellpeak_database:
-    image: postgres:14.5-alpine
-    container_name: richardhowellpeak_database
-    environment:
-      - POSTGRES_USER=richardhp
-      - POSTGRES_DATABASE=richardhp
-      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
-    volumes:
-      - /home/richardhp/docker-volumes/richardhowellpeak/postgresql:/var/lib/postgresql/data
-    healthcheck:
-      test: curl -s https://localhost:5432 >/dev/null; if [[ $$? == 52 ]]; then echo 0; else echo 1; fi
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    ports:
-      - 5432:5432
 
 networks:
   proxy-net:

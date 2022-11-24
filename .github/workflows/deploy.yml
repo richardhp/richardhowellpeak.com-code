@@ -16,6 +16,7 @@ env:
   # This is for the build-stage of the asset pipeline
   SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
   RELEASE_VERSION: ${{ github.event.release.tag_name }}
+  LINODE_IP: ${{ secrets.LINODE_IP }}
 
 jobs:
   build_and_deploy:

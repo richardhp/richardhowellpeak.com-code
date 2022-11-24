@@ -1,9 +1,0 @@
-version: "3"
-
-services:
-  rails_backend:
-    build:
-      context: ./src/rails-backend
-      dockerfile: ./rails.Dockerfile
-      args:
-        - SECRET_KEY_BASE=$SECRET_KEY_BASE
