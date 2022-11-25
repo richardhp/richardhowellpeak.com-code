@@ -1,4 +1,5 @@
-FROM ruby:3.0.2-alpine
+# FROM ruby:3.0.2-alpine
+FROM ruby:3.0.2
 
 ARG SECRET_KEY_BASE
 
