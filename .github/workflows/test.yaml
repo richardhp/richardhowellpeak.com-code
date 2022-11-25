@@ -14,4 +14,4 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           event-type: deploy
-          client-payload: '{ "release_version": "${{ github.event.release.tag_name }}" }'
+          client-payload: '{ "release_version": "${{ github.event.client_payload.release_version  }}" }'
