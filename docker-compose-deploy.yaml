@@ -20,11 +20,6 @@ services:
   richardhowellpeak_nginx:
     image: ghcr.io/richardhp/richardhowellpeak_nginx:${RELEASE_VERSION}
     container_name: richardhowellpeak_nginx
-    build: 
-      context: ./src/rails-backend
-      dockerfile: ./nginx.Dockerfile
-      args:
-        SECRET_KEY_BASE: $SECRET_KEY_BASE
     restart: always
     ports:
       - 9000:80

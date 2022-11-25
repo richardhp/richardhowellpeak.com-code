@@ -13,11 +13,7 @@
 
   <body>
     <%= render "layouts/header" %>
-    <turbo-frame id="body">
-      <div class="px-5">
-        <%= yield %>
-      </div>
-    </turbo-frame>
+      <%= yield %>
     <%= render "layouts/footer" %>
   </body>
 </html>
