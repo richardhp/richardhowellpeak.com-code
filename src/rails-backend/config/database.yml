@@ -24,7 +24,7 @@ test:
 
 production:
   <<: *default
-  host: ENV["POSTGRES_HOST"]
+  host: <%= ENV["POSTGRES_HOST"] %>
   database: richardhowellpeak
   username: richardhp
-  password: ENV["POSTGRES_PASSWORD"]
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
